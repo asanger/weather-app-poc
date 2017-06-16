@@ -17,6 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     // Do any additional setup after loading the view.
+    
+    // Set the current location when this controller loads.
+    [self setCurrentLocation];
+    
 }
 
 - (void)didReceiveMemoryWarning {
@@ -33,5 +37,31 @@
     // Pass the selected object to the new view controller.
 }
 */
+
+
+- (void)setCurrentLocation {
+    Location *location = [[Location alloc] init];
+    
+    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.wunderground.com/api/2d60985a11fb9a6f/geolookup/q/autoip.json"]];
+    
+    [urlRequest setHTTPMethod:@"GET"];
+    
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        
+        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
+        NSLog(@"%@",responseDict);
+        
+        location.city = [responseDict valueForKeyPath:@"location.city"];
+        location.state = [responseDict valueForKeyPath:@"location.state"];
+        location.zip = [responseDict valueForKeyPath:@"location.zip"];
+        
+        self.currentLocation = location;
+        
+    }];
+    
+    [dataTask resume];
+    
+}
 
 @end

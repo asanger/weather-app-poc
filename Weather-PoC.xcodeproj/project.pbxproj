@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */; };
+		E86BA70B1EF4585000FC9353 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA70A1EF4585000FC9353 /* Location.m */; };
 		E87F3D521EF1BA800016AE8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D511EF1BA800016AE8B /* main.m */; };
 		E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D541EF1BA800016AE8B /* AppDelegate.m */; };
 		E87F3D611EF1BA800016AE8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D5F1EF1BA800016AE8B /* Main.storyboard */; };
@@ -37,6 +38,8 @@
 /* Begin PBXFileReference section */
 		E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentConditionsViewController.h; sourceTree = "<group>"; };
 		E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentConditionsViewController.m; sourceTree = "<group>"; };
+		E86BA7091EF4585000FC9353 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
+		E86BA70A1EF4585000FC9353 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
 		E87F3D4D1EF1BA800016AE8B /* Weather-PoC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-PoC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E87F3D511EF1BA800016AE8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E87F3D531EF1BA800016AE8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -78,6 +81,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E86BA7081EF4582400FC9353 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E86BA7091EF4585000FC9353 /* Location.h */,
+				E86BA70A1EF4585000FC9353 /* Location.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
 		E87F3D441EF1BA800016AE8B = {
 			isa = PBXGroup;
 			children = (
@@ -101,6 +113,7 @@
 		E87F3D4F1EF1BA800016AE8B /* Weather-PoC */ = {
 			isa = PBXGroup;
 			children = (
+				E86BA7081EF4582400FC9353 /* Models */,
 				E87F3D531EF1BA800016AE8B /* AppDelegate.h */,
 				E87F3D541EF1BA800016AE8B /* AppDelegate.m */,
 				E87F3D5F1EF1BA800016AE8B /* Main.storyboard */,
@@ -278,6 +291,7 @@
 			files = (
 				E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */,
 				E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */,
+				E86BA70B1EF4585000FC9353 /* Location.m in Sources */,
 				E87F3D521EF1BA800016AE8B /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
