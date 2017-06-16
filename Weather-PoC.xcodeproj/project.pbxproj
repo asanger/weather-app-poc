@@ -7,11 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */; };
 		E87F3D521EF1BA800016AE8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D511EF1BA800016AE8B /* main.m */; };
 		E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D541EF1BA800016AE8B /* AppDelegate.m */; };
-		E87F3D581EF1BA800016AE8B /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D571EF1BA800016AE8B /* RootViewController.m */; };
-		E87F3D5B1EF1BA800016AE8B /* DataViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D5A1EF1BA800016AE8B /* DataViewController.m */; };
-		E87F3D5E1EF1BA800016AE8B /* ModelController.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D5D1EF1BA800016AE8B /* ModelController.m */; };
 		E87F3D611EF1BA800016AE8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D5F1EF1BA800016AE8B /* Main.storyboard */; };
 		E87F3D631EF1BA800016AE8B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D621EF1BA800016AE8B /* Assets.xcassets */; };
 		E87F3D661EF1BA800016AE8B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D641EF1BA800016AE8B /* LaunchScreen.storyboard */; };
@@ -37,16 +35,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentConditionsViewController.h; sourceTree = "<group>"; };
+		E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentConditionsViewController.m; sourceTree = "<group>"; };
 		E87F3D4D1EF1BA800016AE8B /* Weather-PoC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-PoC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E87F3D511EF1BA800016AE8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E87F3D531EF1BA800016AE8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E87F3D541EF1BA800016AE8B /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E87F3D561EF1BA800016AE8B /* RootViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
-		E87F3D571EF1BA800016AE8B /* RootViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
-		E87F3D591EF1BA800016AE8B /* DataViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DataViewController.h; sourceTree = "<group>"; };
-		E87F3D5A1EF1BA800016AE8B /* DataViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DataViewController.m; sourceTree = "<group>"; };
-		E87F3D5C1EF1BA800016AE8B /* ModelController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ModelController.h; sourceTree = "<group>"; };
-		E87F3D5D1EF1BA800016AE8B /* ModelController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ModelController.m; sourceTree = "<group>"; };
 		E87F3D601EF1BA800016AE8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		E87F3D621EF1BA800016AE8B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E87F3D651EF1BA800016AE8B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
@@ -109,17 +103,13 @@
 			children = (
 				E87F3D531EF1BA800016AE8B /* AppDelegate.h */,
 				E87F3D541EF1BA800016AE8B /* AppDelegate.m */,
-				E87F3D561EF1BA800016AE8B /* RootViewController.h */,
-				E87F3D571EF1BA800016AE8B /* RootViewController.m */,
-				E87F3D591EF1BA800016AE8B /* DataViewController.h */,
-				E87F3D5A1EF1BA800016AE8B /* DataViewController.m */,
-				E87F3D5C1EF1BA800016AE8B /* ModelController.h */,
-				E87F3D5D1EF1BA800016AE8B /* ModelController.m */,
 				E87F3D5F1EF1BA800016AE8B /* Main.storyboard */,
 				E87F3D621EF1BA800016AE8B /* Assets.xcassets */,
 				E87F3D641EF1BA800016AE8B /* LaunchScreen.storyboard */,
 				E87F3D671EF1BA800016AE8B /* Info.plist */,
 				E87F3D501EF1BA800016AE8B /* Supporting Files */,
+				E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */,
+				E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */,
 			);
 			path = "Weather-PoC";
 			sourceTree = "<group>";
@@ -286,11 +276,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E87F3D5B1EF1BA800016AE8B /* DataViewController.m in Sources */,
 				E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */,
-				E87F3D5E1EF1BA800016AE8B /* ModelController.m in Sources */,
+				E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */,
 				E87F3D521EF1BA800016AE8B /* main.m in Sources */,
-				E87F3D581EF1BA800016AE8B /* RootViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -530,6 +518,7 @@
 				E87F3D821EF1BA800016AE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E87F3D831EF1BA800016AE8B /* Build configuration list for PBXNativeTarget "Weather-PoCTests" */ = {
 			isa = XCConfigurationList;
@@ -538,6 +527,7 @@
 				E87F3D851EF1BA800016AE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		E87F3D861EF1BA800016AE8B /* Build configuration list for PBXNativeTarget "Weather-PoCUITests" */ = {
 			isa = XCConfigurationList;
@@ -546,6 +536,7 @@
 				E87F3D881EF1BA800016AE8B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
