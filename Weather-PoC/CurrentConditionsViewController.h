@@ -12,7 +12,7 @@
 #import "RootTabBarController.h"
 
 
-@interface CurrentConditionsViewController : UIViewController <LocationDelegate, WeatherServiceDelegate>
+@interface CurrentConditionsViewController : UIViewController <WeatherServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
