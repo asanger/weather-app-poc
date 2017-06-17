@@ -9,6 +9,9 @@
 /* Begin PBXBuildFile section */
 		E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */; };
 		E86BA70B1EF4585000FC9353 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA70A1EF4585000FC9353 /* Location.m */; };
+		E86BA70E1EF4647500FC9353 /* WeatherCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA70D1EF4647500FC9353 /* WeatherCondition.m */; };
+		E86BA7151EF49C0800FC9353 /* RootTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7141EF49C0800FC9353 /* RootTabBarController.m */; };
+		E86BA7191EF4A7CB00FC9353 /* WeatherService.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7181EF4A7CB00FC9353 /* WeatherService.m */; };
 		E87F3D521EF1BA800016AE8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D511EF1BA800016AE8B /* main.m */; };
 		E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D541EF1BA800016AE8B /* AppDelegate.m */; };
 		E87F3D611EF1BA800016AE8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D5F1EF1BA800016AE8B /* Main.storyboard */; };
@@ -40,6 +43,12 @@
 		E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentConditionsViewController.m; sourceTree = "<group>"; };
 		E86BA7091EF4585000FC9353 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
 		E86BA70A1EF4585000FC9353 /* Location.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Location.m; sourceTree = "<group>"; };
+		E86BA70C1EF4647500FC9353 /* WeatherCondition.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherCondition.h; sourceTree = "<group>"; };
+		E86BA70D1EF4647500FC9353 /* WeatherCondition.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherCondition.m; sourceTree = "<group>"; };
+		E86BA7131EF49C0800FC9353 /* RootTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootTabBarController.h; sourceTree = "<group>"; };
+		E86BA7141EF49C0800FC9353 /* RootTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootTabBarController.m; sourceTree = "<group>"; };
+		E86BA7171EF4A7CB00FC9353 /* WeatherService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherService.h; sourceTree = "<group>"; };
+		E86BA7181EF4A7CB00FC9353 /* WeatherService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherService.m; sourceTree = "<group>"; };
 		E87F3D4D1EF1BA800016AE8B /* Weather-PoC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-PoC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E87F3D511EF1BA800016AE8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E87F3D531EF1BA800016AE8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -86,6 +95,8 @@
 			children = (
 				E86BA7091EF4585000FC9353 /* Location.h */,
 				E86BA70A1EF4585000FC9353 /* Location.m */,
+				E86BA70C1EF4647500FC9353 /* WeatherCondition.h */,
+				E86BA70D1EF4647500FC9353 /* WeatherCondition.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -123,6 +134,10 @@
 				E87F3D501EF1BA800016AE8B /* Supporting Files */,
 				E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */,
 				E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */,
+				E86BA7131EF49C0800FC9353 /* RootTabBarController.h */,
+				E86BA7141EF49C0800FC9353 /* RootTabBarController.m */,
+				E86BA7171EF4A7CB00FC9353 /* WeatherService.h */,
+				E86BA7181EF4A7CB00FC9353 /* WeatherService.m */,
 			);
 			path = "Weather-PoC";
 			sourceTree = "<group>";
@@ -291,6 +306,9 @@
 			files = (
 				E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */,
 				E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */,
+				E86BA70E1EF4647500FC9353 /* WeatherCondition.m in Sources */,
+				E86BA7191EF4A7CB00FC9353 /* WeatherService.m in Sources */,
+				E86BA7151EF49C0800FC9353 /* RootTabBarController.m in Sources */,
 				E86BA70B1EF4585000FC9353 /* Location.m in Sources */,
 				E87F3D521EF1BA800016AE8B /* main.m in Sources */,
 			);

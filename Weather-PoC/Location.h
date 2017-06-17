@@ -7,16 +7,22 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "WeatherCondition.h"
 
 @class Location;
 
+@protocol LocationDelegate <NSObject>
+- (void)locationDidUpdate;
+@end
+
+
 @interface Location : NSObject
 
+@property (weak, nonatomic) id delegate;
 
 @property (strong, nonatomic) NSString *city;
 @property (strong, nonatomic) NSString *state;
 @property (strong, nonatomic) NSString *zip;
 
 
-//-(id)initWithData:(NSJSONSerialization
 @end

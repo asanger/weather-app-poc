@@ -16,10 +16,16 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
     
-    // Set the current location when this controller loads.
-    [self setCurrentLocation];
+    WeatherService *weatherService = [[WeatherService alloc] init];
+    weatherService.delegate = self;
+    
+    [weatherService fetchLocation];
+    
+    NSString *dateText = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                    dateStyle:NSDateFormatterLongStyle
+                                                        timeStyle: NSDateFormatterNoStyle];
+    self.dateLabel.text = dateText;
     
 }
 
@@ -39,29 +45,30 @@
 */
 
 
-- (void)setCurrentLocation {
-    Location *location = [[Location alloc] init];
+
+#pragma mark - Delegate Methods
+
+- (void)didFetchLocation:(Location *)location {
+    NSLog(@"didFetchLocation");
     
-    NSMutableURLRequest *urlRequest = [[NSMutableURLRequest alloc] initWithURL:[NSURL URLWithString:@"https://api.wunderground.com/api/2d60985a11fb9a6f/geolookup/q/autoip.json"]];
+//    Update the root controller's currentLocation. Seems a bit smelly...
+    RootTabBarController *tabBarController = (RootTabBarController*)self.tabBarController;
+    tabBarController.currentLocation = location;
     
-    [urlRequest setHTTPMethod:@"GET"];
+    self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", location.city, location.state];
     
-    NSURLSession *session = [NSURLSession sharedSession];
-    NSURLSessionDataTask *dataTask = [session dataTaskWithRequest:urlRequest completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
-        
-        NSDictionary *responseDict = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingAllowFragments error:nil];
-        NSLog(@"%@",responseDict);
-        
-        location.city = [responseDict valueForKeyPath:@"location.city"];
-        location.state = [responseDict valueForKeyPath:@"location.state"];
-        location.zip = [responseDict valueForKeyPath:@"location.zip"];
-        
-        self.currentLocation = location;
-        
-    }];
+    WeatherService *weatherService = [[WeatherService alloc] init];
+    weatherService.delegate = self;
     
-    [dataTask resume];
+    [weatherService fetchCondition:location];
+}
+
+
+- (void)didFetchCondition:(WeatherCondition *)condition {
+    NSLog(@"didFetchCondition");
     
+    self.temperatureLabel.text = condition.temperature;
+    self.descriptionLabel.text = condition.weatherDescription;
 }
 
 @end

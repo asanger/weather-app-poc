@@ -8,14 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "Location.h"
+#import "WeatherService.h"
+#import "RootTabBarController.h"
 
 
-@interface CurrentConditionsViewController : UIViewController
+@interface CurrentConditionsViewController : UIViewController <LocationDelegate, WeatherServiceDelegate>
 
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
+@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 
-@property (strong, nonatomic) Location *currentLocation;
+
+- (void)didFetchLocation:(Location *)location;
 
 @end
