@@ -34,4 +34,45 @@
 }
 */
 
+
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    // Return the number of rows in the section.
+    // If you're serving data from an array, return the length of the array:
+    return 5;
+}
+
+// Customize the appearance of table view cells.
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
+    static NSString *CellIdentifier = @"cell";
+    
+//    var *cell = tableView.dequeueReusableCellWithIdentifier("YourCustomIdentifierFromTheCustomClass")
+
+    ForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
+    if (cell == nil) {
+        cell = [[ForecastTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
+    }
+    
+    // Set the data for this cell:
+    
+    cell.highTempLabel.text = @"80";
+    cell.lowTempLabel.text = @"62";
+    cell.dateLabel.text = @"Tue";
+        
+    return cell;
+}
+
+
+#pragma mark - Delegate Methods
+
+// For UITableView Delegate
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    
+    int selectedRow = indexPath.row;
+    NSLog(@"touch on row %d", selectedRow);
+}
+
+
 @end
