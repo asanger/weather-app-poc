@@ -8,10 +8,12 @@
 
 #import <Foundation/Foundation.h>
 #import "Location.h"
+#import "ForecastDay.h"
 
 @protocol WeatherServiceDelegate <NSObject>
 - (void)didFetchLocation:(Location *)location;
 - (void)didFetchCondition:(WeatherCondition *)condition;
+- (void)didFetchForecast:(NSArray *)forecastDays;
 @end
 
 @interface WeatherService : NSObject
@@ -20,5 +22,6 @@
 
 - (void)fetchLocation;
 - (void)fetchCondition:(Location *)location;
+- (void)fetchForecast:(Location *)location;
 
 @end

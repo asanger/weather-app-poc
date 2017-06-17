@@ -14,6 +14,7 @@
 		E86BA7191EF4A7CB00FC9353 /* WeatherService.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7181EF4A7CB00FC9353 /* WeatherService.m */; };
 		E86BA71F1EF5964400FC9353 /* ForecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA71E1EF5964400FC9353 /* ForecastViewController.m */; };
 		E86BA7231EF59ADD00FC9353 /* ForecastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7221EF59ADD00FC9353 /* ForecastTableViewCell.m */; };
+		E86BA7261EF5A87700FC9353 /* ForecastDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7251EF5A87700FC9353 /* ForecastDay.m */; };
 		E87F3D521EF1BA800016AE8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D511EF1BA800016AE8B /* main.m */; };
 		E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D541EF1BA800016AE8B /* AppDelegate.m */; };
 		E87F3D611EF1BA800016AE8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D5F1EF1BA800016AE8B /* Main.storyboard */; };
@@ -55,6 +56,8 @@
 		E86BA71E1EF5964400FC9353 /* ForecastViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastViewController.m; sourceTree = "<group>"; };
 		E86BA7211EF59ADD00FC9353 /* ForecastTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastTableViewCell.h; sourceTree = "<group>"; };
 		E86BA7221EF59ADD00FC9353 /* ForecastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastTableViewCell.m; sourceTree = "<group>"; };
+		E86BA7241EF5A87700FC9353 /* ForecastDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastDay.h; sourceTree = "<group>"; };
+		E86BA7251EF5A87700FC9353 /* ForecastDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastDay.m; sourceTree = "<group>"; };
 		E87F3D4D1EF1BA800016AE8B /* Weather-PoC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-PoC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E87F3D511EF1BA800016AE8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E87F3D531EF1BA800016AE8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -103,6 +106,8 @@
 				E86BA70A1EF4585000FC9353 /* Location.m */,
 				E86BA70C1EF4647500FC9353 /* WeatherCondition.h */,
 				E86BA70D1EF4647500FC9353 /* WeatherCondition.m */,
+				E86BA7241EF5A87700FC9353 /* ForecastDay.h */,
+				E86BA7251EF5A87700FC9353 /* ForecastDay.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -327,6 +332,7 @@
 				E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */,
 				E86BA70E1EF4647500FC9353 /* WeatherCondition.m in Sources */,
 				E86BA7191EF4A7CB00FC9353 /* WeatherService.m in Sources */,
+				E86BA7261EF5A87700FC9353 /* ForecastDay.m in Sources */,
 				E86BA7151EF49C0800FC9353 /* RootTabBarController.m in Sources */,
 				E86BA7231EF59ADD00FC9353 /* ForecastTableViewCell.m in Sources */,
 				E86BA70B1EF4585000FC9353 /* Location.m in Sources */,

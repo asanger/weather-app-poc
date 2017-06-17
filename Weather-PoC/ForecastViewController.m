@@ -16,6 +16,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    RootTabBarController *tabBarController = (RootTabBarController*)self.tabBarController;
+    
+    WeatherService *weatherService = [[WeatherService alloc] init];
+    weatherService.delegate = self;
+    [weatherService fetchForecast:tabBarController.currentLocation];
     // Do any additional setup after loading the view.
 }
 
@@ -38,27 +44,24 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
     // Return the number of rows in the section.
-    // If you're serving data from an array, return the length of the array:
-    return 5;
+    return _forecastDays.count;
 }
 
-// Customize the appearance of table view cells.
+// Set the data for each cell using the index of the cell
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"cell";
     
-//    var *cell = tableView.dequeueReusableCellWithIdentifier("YourCustomIdentifierFromTheCustomClass")
-
+    ForecastDay *forecastDay = [self.forecastDays objectAtIndex:indexPath.item];
+    
     ForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[ForecastTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
-    // Set the data for this cell:
+    cell.highTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.highTemp];
+    cell.lowTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.lowTemp];
+    cell.dateLabel.text = forecastDay.weekday;
     
-    cell.highTempLabel.text = @"80";
-    cell.lowTempLabel.text = @"62";
-    cell.dateLabel.text = @"Tue";
-        
     return cell;
 }
 
@@ -69,10 +72,12 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    
-    int selectedRow = indexPath.row;
-    NSLog(@"touch on row %d", selectedRow);
 }
 
+
+- (void)didFetchForecast:(NSArray *)forecastDays {
+    self.forecastDays = forecastDays;
+    [self.forecastTableView reloadData];
+}
 
 @end
