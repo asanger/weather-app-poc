@@ -10,5 +10,9 @@
 
 @implementation WeatherCondition
 
+// Automatically format the temperature value for display
+- (NSString *)temperature_formatted {
+    return [NSString stringWithFormat:@"%@ºF",self.temperature];
+}
 
 @end

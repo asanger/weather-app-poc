@@ -63,7 +63,8 @@
         currentDay.highTemp = [[simpleForecastDictionary valueForKeyPath:@"high.fahrenheit"] intValue];
         currentDay.lowTemp = [[simpleForecastDictionary valueForKeyPath:@"low.fahrenheit"] intValue];
         currentDay.weatherDescription = [simpleForecastDictionary valueForKey:@"conditions"];
-        currentDay.weatherIconUrl = [NSURL URLWithString:[simpleForecastDictionary valueForKey:@"icon_url"]];
+        NSURL *originalWeatherIconUrl = [NSURL URLWithString:[simpleForecastDictionary valueForKey:@"icon_url"]];
+        currentDay.weatherIconUrl = [self secureUrl:originalWeatherIconUrl];
         currentDay.weekday = [simpleForecastDictionary valueForKeyPath:@"date.weekday_short"];
         
         [forecastDays addObject:currentDay];
@@ -75,6 +76,15 @@
         [self.delegate didFetchForecast:[NSArray arrayWithArray:forecastDays]];
     }
     
+}
+
+
+// This will take a URL and convert it to HTTPS if needed.
+// Weather Underground keeps returning insecure URLs, and I don't want to turn the
+- (NSURL *)secureUrl:(NSURL *)originalUrl {
+    NSURLComponents *components = [NSURLComponents componentsWithURL:originalUrl resolvingAgainstBaseURL:YES];
+    components.scheme = @"https";
+    return components.URL;
 }
 
 @end

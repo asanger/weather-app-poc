@@ -12,5 +12,7 @@
 @interface RootTabBarController : UITabBarController
 
 @property (strong, nonatomic) Location *currentLocation;
+@property (strong, nonatomic) NSArray *forecastDays;
+@property (strong, nonatomic) WeatherCondition *weatherCondition;
 
 @end

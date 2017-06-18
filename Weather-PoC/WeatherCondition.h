@@ -16,4 +16,6 @@
 @property (strong, nonatomic) NSString *weatherDescription;
 @property (strong, nonatomic) NSString *relativeHumidity;
 
+- (NSString *)temperature_formatted;
+
 @end

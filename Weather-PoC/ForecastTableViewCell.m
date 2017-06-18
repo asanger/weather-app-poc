@@ -21,4 +21,12 @@
     // Configure the view for the selected state
 }
 
+//  Make sure that the bg is transparent so we can see the bg of the main view.
+- (void)layoutSubviews{
+    [super layoutSubviews];
+
+    self.contentView.backgroundColor = [UIColor clearColor];
+    self.backgroundColor = [UIColor clearColor];
+}
+
 @end

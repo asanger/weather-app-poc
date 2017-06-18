@@ -22,6 +22,9 @@
     WeatherService *weatherService = [[WeatherService alloc] init];
     weatherService.delegate = self;
     [weatherService fetchForecast:tabBarController.currentLocation];
+    
+    [self prepareDisplay];
+
     // Do any additional setup after loading the view.
 }
 
@@ -51,20 +54,44 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     static NSString *CellIdentifier = @"cell";
     
-    ForecastDay *forecastDay = [self.forecastDays objectAtIndex:indexPath.item];
-    
     ForecastTableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"cell"];
     if (cell == nil) {
         cell = [[ForecastTableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:CellIdentifier];
     }
     
+    ForecastDay *forecastDay = [self.forecastDays objectAtIndex:indexPath.item];
+    
     cell.highTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.highTemp];
     cell.lowTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.lowTemp];
     cell.dateLabel.text = forecastDay.weekday;
     
+    NSData *data = [NSData dataWithContentsOfURL:forecastDay.weatherIconUrl];
+    UIImage *image = [UIImage imageWithData:data];
+    cell.weatherImage.image = image;
+    [cell.weatherImage setImage:image];
+
+
+    
     return cell;
 }
 
+//  Basic display setup for background colors. For something more complicated I would probably subclass the views and handle the visuals there.
+- (void)prepareDisplay {
+    //  Make sure that the table view is transparent so we can just set the bg of the primary view.
+    self.forecastTableView.backgroundColor = [UIColor clearColor];
+    
+    //  Create a left->right gradient. No need to apply these to the individual cells since those aren't animated.
+    //  If we do animate them in the future, we may want to move this to the individual cells so that the gradient moves with them.
+    UIColor *leftColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
+    UIColor *rightColor = [UIColor colorWithRed:197.0/255.0 green:231.0/255.0 blue:255.0/255.0 alpha:1.0];
+    CAGradientLayer *bgGradient = [CAGradientLayer layer];
+    bgGradient.colors = [NSArray arrayWithObjects: (id)leftColor.CGColor, (id)rightColor.CGColor, nil];
+    bgGradient.frame = self.view.bounds;
+    bgGradient.startPoint = CGPointMake(0.0, 0.5);
+    bgGradient.endPoint = CGPointMake(1.0, 0.5);
+    [self.view.layer insertSublayer:bgGradient atIndex:0];
+
+}
 
 #pragma mark - Delegate Methods
 
@@ -79,5 +106,6 @@
     self.forecastDays = forecastDays;
     [self.forecastTableView reloadData];
 }
+
 
 @end
