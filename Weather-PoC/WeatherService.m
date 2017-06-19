@@ -14,27 +14,52 @@
 {
     Location *location = [[Location alloc] init];
 
-//  We're generating fake data until we hook up to the API
-    location.city = @"Clarkston";
-    location.state = @"MI";
-    location.zip = @"48348";
-    
-    if ([self.delegate respondsToSelector:@selector(didFetchLocation:)]) {
-        [self.delegate didFetchLocation:location];
-    }
+    NSURL *locationUrl = [NSURL URLWithString:@"https://api.wunderground.com/api/2d60985a11fb9a6f/geolookup/q/autoip.json"];
+    NSURLRequest *request = [NSURLRequest requestWithURL:locationUrl];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                      NSDictionary *dataDictionary = [NSJSONSerialization
+                                                                      JSONObjectWithData:data options:0 error:&error];
+                                      
+                                      location.city = [dataDictionary valueForKeyPath:@"location.city"];
+                                      location.state = [dataDictionary valueForKeyPath:@"location.state"];
+                                      location.zip = [dataDictionary valueForKeyPath:@"location.zip"];
+                                      
+                                      if ([self.delegate respondsToSelector:@selector(didFetchLocation:)]) {
+                                          [self.delegate didFetchLocation:location];
+                                      }
+                                  }];
+    [task resume];
 }
 
 - (void)fetchCondition:(Location *)location
 {
     WeatherCondition *condition = [[WeatherCondition alloc] init];
     
-    condition.temperature = @"48";
-    condition.weatherDescription = @"Kinda cold";
-    condition.relativeHumidity = @"59%";
     
-    if ([self.delegate respondsToSelector:@selector(didFetchCondition:)]) {
-        [self.delegate didFetchCondition:condition];
-    }
+    NSURL *conditionUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.wunderground.com/api/2d60985a11fb9a6f/conditions/q/%@/%@.json",location.state, location.city]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:conditionUrl];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+                                      
+                                      NSDictionary *dataDictionary = [NSJSONSerialization
+                                                                          JSONObjectWithData:data options:0 error:&error];
+                                      
+                                      condition.temperature = [[dataDictionary valueForKeyPath:@"current_observation.temp_f"] intValue];
+                                      condition.weatherDescription = [dataDictionary valueForKeyPath:@"current_observation.weather"];
+                                      condition.relativeHumidity = [dataDictionary valueForKeyPath:@"current_observation.relative_humidity"];
+                                      
+                                      if ([self.delegate respondsToSelector:@selector(didFetchCondition:)]) {
+                                          [self.delegate didFetchCondition:condition];
+                                      }
+                                      
+                                  }];
+    [task resume];
 }
 
 

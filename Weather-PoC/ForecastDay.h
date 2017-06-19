@@ -20,6 +20,4 @@
 @property (strong, nonatomic) NSString *weatherIconImageName;
 @property (strong, nonatomic) NSString *weatherIconDescription;
 
-@property (strong, nonatomic) NSDate *updatedAt;
-
 @end

@@ -12,7 +12,7 @@
 
 // Automatically format the temperature value for display
 - (NSString *)temperature_formatted {
-    return [NSString stringWithFormat:@"%@ºF",self.temperature];
+    return [NSString stringWithFormat:@"%i",self.temperature];
 }
 
 @end

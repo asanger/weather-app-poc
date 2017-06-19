@@ -83,22 +83,24 @@
 }
 
 - (void)populateViewData {
-    NSLog(@"PopulateViewData");
-    
-//    If the information has not yet been returned from the API, don't attempt to display the data yet.
-    WeatherManager *sharedManager = [WeatherManager sharedManager];
-    if(![sharedManager.conditionUpdatedAt isEqual:nil]) {
-        self.temperatureLabel.text = sharedManager.weatherCondition.temperature;
-        self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;
-    } else {
-        self.temperatureLabel.text = @"--";
-        self.descriptionLabel.text = @"Loading Data...";
-    }
-    
-    NSString *dateText = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                        dateStyle:NSDateFormatterLongStyle
-                                                        timeStyle: NSDateFormatterNoStyle];
-    self.dateLabel.text = dateText;
+//    We need to make sure that this *always* runs on the main thread, otherwise we might get crashes or super very delayed updates.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        NSLog(@"PopulateViewData");
+        //    If the information has not yet been returned from the API, don't attempt to display the data yet.
+        WeatherManager *sharedManager = [WeatherManager sharedManager];
+        if(sharedManager.conditionUpdatedAt) {
+            self.temperatureLabel.text = [NSString stringWithFormat:@"%d", sharedManager.weatherCondition.temperature];
+            self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;
+        } else {
+            self.temperatureLabel.text = @"--";
+            self.descriptionLabel.text = @"Loading Data...";
+        }
+        
+        NSString *dateText = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                            dateStyle:NSDateFormatterLongStyle
+                                                            timeStyle: NSDateFormatterNoStyle];
+        self.dateLabel.text = dateText;
+    });
 }
 
 @end

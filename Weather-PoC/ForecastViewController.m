@@ -64,6 +64,7 @@
     
     ForecastDay *forecastDay = [self.forecastDays objectAtIndex:indexPath.item];
     
+
     cell.highTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.highTemp];
     cell.lowTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.lowTemp];
     cell.dateLabel.text = forecastDay.weekday;
@@ -71,7 +72,6 @@
     UIImage *image = [UIImage imageNamed:forecastDay.weatherIconImageName];
     cell.weatherImage.image = image;
     [cell.weatherImage setImage:image];
-
 
     
     return cell;
@@ -101,7 +101,11 @@
     
     WeatherManager *sharedManager = [WeatherManager sharedManager];
     self.forecastDays = sharedManager.forecastDays;
-    [self.forecastTableView reloadData];
+    
+    //    We need to make sure that this *always* runs on the main thread, otherwise we might get crashes or super very delayed updates.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        [self.forecastTableView reloadData];
+    });
 }
 
 
