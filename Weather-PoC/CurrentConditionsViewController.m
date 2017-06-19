@@ -21,7 +21,6 @@
     
     [self populateViewData];
     [self prepareDisplay];
-
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,17 +39,8 @@
 */
 
 
-- (void)prepareDisplay {
-    //  Add a gradient to the background so it looks a bit nicer.
-    UIColor *topColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
-    UIColor *bottomColor = [UIColor colorWithRed:197.0/255.0 green:231.0/255.0 blue:255.0/255.0 alpha:1.0];
-    CAGradientLayer *bgGradient = [CAGradientLayer layer];
-    bgGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
-    bgGradient.frame = self.view.bounds;
-    [self.view.layer insertSublayer:bgGradient atIndex:0];
-}
 
-#pragma mark - Animations
+#pragma mark - Animation/Display Methods
 
 - (void)viewWillAppear:(BOOL)animated {
     
@@ -76,6 +66,16 @@
     }];
 }
 
+- (void)prepareDisplay {
+    //  Add a gradient to the background so it looks a bit nicer.
+    UIColor *topColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
+    UIColor *bottomColor = [UIColor colorWithRed:197.0/255.0 green:231.0/255.0 blue:255.0/255.0 alpha:1.0];
+    CAGradientLayer *bgGradient = [CAGradientLayer layer];
+    bgGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
+    bgGradient.frame = self.view.bounds;
+    [self.view.layer insertSublayer:bgGradient atIndex:0];
+}
+
 
 - (void)displayNewConditionData:(NSNotification *)notification {
     NSLog(@"displayNewConditionData");
@@ -85,10 +85,15 @@
 - (void)populateViewData {
     NSLog(@"PopulateViewData");
     
+//    If the information has not yet been returned from the API, don't attempt to display the data yet.
     WeatherManager *sharedManager = [WeatherManager sharedManager];
-    
-    self.temperatureLabel.text = sharedManager.weatherCondition.temperature;
-    self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;
+    if(![sharedManager.conditionUpdatedAt isEqual:nil]) {
+        self.temperatureLabel.text = sharedManager.weatherCondition.temperature;
+        self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;
+    } else {
+        self.temperatureLabel.text = @"--";
+        self.descriptionLabel.text = @"Loading Data...";
+    }
     
     NSString *dateText = [NSDateFormatter localizedStringFromDate:[NSDate date]
                                                         dateStyle:NSDateFormatterLongStyle

@@ -12,15 +12,16 @@
 #import "ForecastDay.h"
 #import "WeatherService.h"
 
-@interface WeatherManager : NSObject <WeatherServiceDelegate> {
-    Location *location;
-    WeatherCondition *weatherCondition;
-    NSArray *forecastDays;
-}
+@interface WeatherManager : NSObject <WeatherServiceDelegate>
 
-@property (nonatomic, retain) Location *location;
-@property (nonatomic, retain) WeatherCondition *weatherCondition;
-@property (nonatomic, retain) NSArray *forecastDays;
+@property (strong, nonatomic,) Location *location;
+@property (strong, nonatomic) WeatherCondition *weatherCondition;
+@property (strong, nonatomic) NSArray *forecastDays;
+
+@property (strong, nonatomic) NSDate *locationUpdatedAt;
+@property (strong, nonatomic) NSDate *conditionUpdatedAt;
+@property (strong, nonatomic) NSDate *forecastUpdatedAt;
+
 
 + (id)sharedManager;
 

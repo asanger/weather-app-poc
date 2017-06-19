@@ -22,8 +22,6 @@
     WeatherManager *sharedManager = [WeatherManager sharedManager];
     [sharedManager refreshData];
     
-    // Do any additional setup after loading the view.
-
 }
 
 - (void)didReceiveMemoryWarning {

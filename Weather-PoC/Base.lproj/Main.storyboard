@@ -193,36 +193,41 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Friday, June 16th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArK-vI-DTu">
-                                <rect key="frame" x="121" y="88" width="133.5" height="23.5"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Friday, June 16th" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ArK-vI-DTu">
+                                <rect key="frame" x="121" y="88" width="134" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="134" id="sAl-XM-opq"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.53407501049999995" green="0.52360085450000005" blue="0.53364211829999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-cv-JIy">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="--" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WBa-cv-JIy">
                                 <rect key="frame" x="16" y="121" width="343" height="274"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="200"/>
                                 <color key="textColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.53407501054899342" green="0.5236008544725046" blue="0.5336421183293909" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIS-Lw-0m9">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sIS-Lw-0m9">
                                 <rect key="frame" x="0.0" y="372" width="375" height="44"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="hBU-Lo-8kB"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="30"/>
                                 <color key="textColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
                                 <color key="shadowColor" red="0.53407501049999995" green="0.52360085450000005" blue="0.53364211829999997" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Royal Oak, MI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqH-jk-BO3">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Royal Oak, MI" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pqH-jk-BO3">
                                 <rect key="frame" x="0.0" y="438" width="375" height="21"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMinX="YES" widthSizable="YES" flexibleMaxX="YES" flexibleMinY="YES" heightSizable="YES" flexibleMaxY="YES"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="21" id="4ts-KH-lSH"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="Avenir-Book" family="Avenir" pointSize="17"/>
                                 <color key="textColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <nil key="highlightedColor"/>
@@ -230,6 +235,19 @@
                                 <size key="shadowOffset" width="1" height="1"/>
                             </label>
                         </subviews>
+                        <constraints>
+                            <constraint firstItem="sIS-Lw-0m9" firstAttribute="leading" secondItem="EXV-yX-nFl" secondAttribute="leading" id="1BC-sn-bnd"/>
+                            <constraint firstItem="ArK-vI-DTu" firstAttribute="top" secondItem="UWN-3P-IJO" secondAttribute="bottom" constant="68" id="6bg-0Q-aLl"/>
+                            <constraint firstItem="ArK-vI-DTu" firstAttribute="centerX" secondItem="WBa-cv-JIy" secondAttribute="centerX" id="9Hv-So-Mr3"/>
+                            <constraint firstItem="sIS-Lw-0m9" firstAttribute="trailing" secondItem="pqH-jk-BO3" secondAttribute="trailing" id="G7f-42-Tgi"/>
+                            <constraint firstItem="pqH-jk-BO3" firstAttribute="top" secondItem="sIS-Lw-0m9" secondAttribute="bottom" constant="22" id="PrG-ax-IfT"/>
+                            <constraint firstItem="WBa-cv-JIy" firstAttribute="top" secondItem="ArK-vI-DTu" secondAttribute="bottom" constant="9" id="Ycb-XP-bNM"/>
+                            <constraint firstItem="WBa-cv-JIy" firstAttribute="leading" secondItem="EXV-yX-nFl" secondAttribute="leadingMargin" id="ZcB-Cu-b3i"/>
+                            <constraint firstItem="WBa-cv-JIy" firstAttribute="centerX" secondItem="sIS-Lw-0m9" secondAttribute="centerX" id="fi1-Zs-hNl"/>
+                            <constraint firstItem="pqH-jk-BO3" firstAttribute="top" secondItem="WBa-cv-JIy" secondAttribute="bottom" constant="43" id="iQB-MX-hPS"/>
+                            <constraint firstItem="sIS-Lw-0m9" firstAttribute="leading" secondItem="pqH-jk-BO3" secondAttribute="leading" id="w0S-gx-0Hr"/>
+                            <constraint firstAttribute="trailing" secondItem="sIS-Lw-0m9" secondAttribute="trailing" id="yuc-Zh-wWO"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Current Conditions" id="fgb-zQ-jd3"/>
                     <connections>
