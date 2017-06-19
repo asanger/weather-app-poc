@@ -83,6 +83,8 @@
 }
 
 - (void)populateViewData {
+    NSLog(@"PopulateViewData");
+    
     WeatherManager *sharedManager = [WeatherManager sharedManager];
     
     self.temperatureLabel.text = sharedManager.weatherCondition.temperature;

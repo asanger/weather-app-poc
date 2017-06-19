@@ -8,15 +8,16 @@
 
 #import <Foundation/Foundation.h>
 
-@interface ForecastDay : NSObject
+@interface ForecastDay : NSObject {
+    NSDictionary *weatherIconImageNameDictionary;
+}
 
 @property (strong, nonatomic) NSDate *date;
 @property (strong, nonatomic) NSString *weekday;
 @property (nonatomic) int highTemp;
 @property (nonatomic) int lowTemp;
 @property (strong, nonatomic) NSString *weatherDescription;
-@property (strong, nonatomic) NSURL *weatherIconUrl;
-@property (strong, nonatomic) NSData *weatherIconData;
-
+@property (strong, nonatomic) NSString *weatherIconImageName;
+@property (strong, nonatomic) NSString *weatherIconDescription;
 
 @end

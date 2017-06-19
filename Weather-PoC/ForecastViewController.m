@@ -68,7 +68,7 @@
     cell.lowTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.lowTemp];
     cell.dateLabel.text = forecastDay.weekday;
     
-    UIImage *image = [UIImage imageWithData:forecastDay.weatherIconData];
+    UIImage *image = [UIImage imageNamed:forecastDay.weatherIconImageName];
     cell.weatherImage.image = image;
     [cell.weatherImage setImage:image];
 

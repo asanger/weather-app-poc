@@ -60,11 +60,10 @@
         currentDay.highTemp = [[simpleForecastDictionary valueForKeyPath:@"high.fahrenheit"] intValue];
         currentDay.lowTemp = [[simpleForecastDictionary valueForKeyPath:@"low.fahrenheit"] intValue];
         currentDay.weatherDescription = [simpleForecastDictionary valueForKey:@"conditions"];
-        NSURL *originalWeatherIconUrl = [NSURL URLWithString:[simpleForecastDictionary valueForKey:@"icon_url"]];
-        currentDay.weatherIconUrl = [self secureUrl:originalWeatherIconUrl];
-        currentDay.weatherIconData = [NSData dataWithContentsOfURL:currentDay.weatherIconUrl];
+        currentDay.weatherIconDescription = [simpleForecastDictionary valueForKey:@"icon"];
         currentDay.weekday = [simpleForecastDictionary valueForKeyPath:@"date.weekday_short"];
         
+        NSLog(@"%@", currentDay.weatherIconDescription);
         [forecastDays addObject:currentDay];
     }
     
