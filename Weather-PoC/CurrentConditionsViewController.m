@@ -66,6 +66,18 @@
     }];
 }
 
+- (void)viewDidLayoutSubviews {
+    UIEdgeInsets scrollViewInsets = UIEdgeInsetsZero;
+    scrollViewInsets.top = self.scrollView.bounds.size.height/2.0;
+    scrollViewInsets.top -= self.containerView.bounds.size.height/2.0;
+    scrollViewInsets.bottom = self.scrollView.bounds.size.height/2.0;
+    scrollViewInsets.bottom -= self.containerView.bounds.size.height/2.0;
+    scrollViewInsets.bottom += 1;
+    
+    self.scrollView.contentInset = scrollViewInsets;
+}
+
+
 - (void)prepareDisplay {
     //  Add a gradient to the background so it looks a bit nicer.
     UIColor *topColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
@@ -74,6 +86,10 @@
     bgGradient.colors = [NSArray arrayWithObjects: (id)topColor.CGColor, (id)bottomColor.CGColor, nil];
     bgGradient.frame = self.view.bounds;
     [self.view.layer insertSublayer:bgGradient atIndex:0];
+    
+    self.scrollView.backgroundColor = [UIColor clearColor];
+    self.containerView.backgroundColor = [UIColor clearColor];
+
 }
 
 
@@ -91,6 +107,7 @@
         if(sharedManager.conditionUpdatedAt) {
             self.temperatureLabel.text = [NSString stringWithFormat:@"%d", sharedManager.weatherCondition.temperature];
             self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;
+            self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", sharedManager.location.city, sharedManager.location.state];
         } else {
             self.temperatureLabel.text = @"--";
             self.descriptionLabel.text = @"Loading Data...";
