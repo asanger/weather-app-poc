@@ -15,11 +15,6 @@
 
 @property (strong, nonatomic) NSArray *forecastDays;
 
-//@property (weak, nonatomic) IBOutlet UILabel *dayLabel;
-//@property (weak, nonatomic) IBOutlet UIImageView *weatherIcon;
-//@property (weak, nonatomic) IBOutlet UILabel *lowTempLabel;
-//@property (weak, nonatomic) IBOutlet UILabel *highTempLabel;
-
 @property (weak, nonatomic) IBOutlet UITableView *forecastTableView;
 
 

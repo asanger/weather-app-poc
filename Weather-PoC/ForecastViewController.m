@@ -15,14 +15,17 @@
 @implementation ForecastViewController
 
 - (void)viewDidLoad {
+    NSLog(@"Forecast Loaded");
     [super viewDidLoad];
     
-    RootTabBarController *tabBarController = (RootTabBarController*)self.tabBarController;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayNewForecastData:) name:@"ForecastUpdated" object:nil];
+
     
-    WeatherService *weatherService = [[WeatherService alloc] init];
-    weatherService.delegate = self;
-    [weatherService fetchForecast:tabBarController.currentLocation];
-    
+//    Pull the forecast data from the WeatherManager on initial load.
+    WeatherManager *sharedManager = [WeatherManager sharedManager];
+    self.forecastDays = sharedManager.forecastDays;
+    [self.forecastTableView reloadData];
+
     [self prepareDisplay];
 
     // Do any additional setup after loading the view.
@@ -65,8 +68,7 @@
     cell.lowTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.lowTemp];
     cell.dateLabel.text = forecastDay.weekday;
     
-    NSData *data = [NSData dataWithContentsOfURL:forecastDay.weatherIconUrl];
-    UIImage *image = [UIImage imageWithData:data];
+    UIImage *image = [UIImage imageWithData:forecastDay.weatherIconData];
     cell.weatherImage.image = image;
     [cell.weatherImage setImage:image];
 
@@ -80,8 +82,8 @@
     //  Make sure that the table view is transparent so we can just set the bg of the primary view.
     self.forecastTableView.backgroundColor = [UIColor clearColor];
     
-    //  Create a left->right gradient. No need to apply these to the individual cells since those aren't animated.
-    //  If we do animate them in the future, we may want to move this to the individual cells so that the gradient moves with them.
+//  Create a left->right gradient. No need to apply these to the individual cells since those aren't animated.
+//  If we do animate them in the future, we may want to move this to the individual cells so that the gradient moves with them.
     UIColor *leftColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
     UIColor *rightColor = [UIColor colorWithRed:197.0/255.0 green:231.0/255.0 blue:255.0/255.0 alpha:1.0];
     CAGradientLayer *bgGradient = [CAGradientLayer layer];
@@ -90,8 +92,17 @@
     bgGradient.startPoint = CGPointMake(0.0, 0.5);
     bgGradient.endPoint = CGPointMake(1.0, 0.5);
     [self.view.layer insertSublayer:bgGradient atIndex:0];
-
 }
+
+
+- (void)displayNewForecastData:(NSNotification *)notification {
+    NSLog(@"displayNewForecastData");
+    
+    WeatherManager *sharedManager = [WeatherManager sharedManager];
+    self.forecastDays = sharedManager.forecastDays;
+    [self.forecastTableView reloadData];
+}
+
 
 #pragma mark - Delegate Methods
 
@@ -99,12 +110,6 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-}
-
-
-- (void)didFetchForecast:(NSArray *)forecastDays {
-    self.forecastDays = forecastDays;
-    [self.forecastTableView reloadData];
 }
 
 

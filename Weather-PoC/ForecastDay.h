@@ -16,6 +16,7 @@
 @property (nonatomic) int lowTemp;
 @property (strong, nonatomic) NSString *weatherDescription;
 @property (strong, nonatomic) NSURL *weatherIconUrl;
+@property (strong, nonatomic) NSData *weatherIconData;
 
 
 @end

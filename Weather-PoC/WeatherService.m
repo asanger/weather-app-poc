@@ -14,7 +14,7 @@
 {
     Location *location = [[Location alloc] init];
 
-    //    We're generating fake data until we hook up to the API
+//  We're generating fake data until we hook up to the API
     location.city = @"Clarkston";
     location.state = @"MI";
     location.zip = @"48348";
@@ -22,7 +22,6 @@
     if ([self.delegate respondsToSelector:@selector(didFetchLocation:)]) {
         [self.delegate didFetchLocation:location];
     }
-    
 }
 
 - (void)fetchCondition:(Location *)location
@@ -39,10 +38,8 @@
 }
 
 
-//
 - (void)fetchForecast:(Location *)location
 {
-    
     NSMutableArray *forecastDays = [NSMutableArray array];
     
     NSURL *forecastUrl = [NSURL URLWithString:@"https://api.wunderground.com/api/2d60985a11fb9a6f/forecast10day/q/CA/San_Francisco.json"];
@@ -57,14 +54,15 @@
     for (NSDictionary *simpleForecastDictionary in [forecastDayDictionary objectForKey:@"forecastday"]) {
         ForecastDay *currentDay = [[ForecastDay alloc] init];
         
-//        Assign all of the values from the API response
-//        double epoch = [[simpleForecastDictionary valueForKeyPath:@"date.epoch"] doubleValue];
-//        currentDay.date = [NSDate dateWithTimeIntervalSince1970:epoch];
+//      Assign all of the values from the API response
+//      double epoch = [[simpleForecastDictionary valueForKeyPath:@"date.epoch"] doubleValue];
+//      currentDay.date = [NSDate dateWithTimeIntervalSince1970:epoch];
         currentDay.highTemp = [[simpleForecastDictionary valueForKeyPath:@"high.fahrenheit"] intValue];
         currentDay.lowTemp = [[simpleForecastDictionary valueForKeyPath:@"low.fahrenheit"] intValue];
         currentDay.weatherDescription = [simpleForecastDictionary valueForKey:@"conditions"];
         NSURL *originalWeatherIconUrl = [NSURL URLWithString:[simpleForecastDictionary valueForKey:@"icon_url"]];
         currentDay.weatherIconUrl = [self secureUrl:originalWeatherIconUrl];
+        currentDay.weatherIconData = [NSData dataWithContentsOfURL:currentDay.weatherIconUrl];
         currentDay.weekday = [simpleForecastDictionary valueForKeyPath:@"date.weekday_short"];
         
         [forecastDays addObject:currentDay];
@@ -72,15 +70,13 @@
     
     
     if ([self.delegate respondsToSelector:@selector(didFetchForecast:)]) {
-        // Pass an immutable array now that we're done with making changes to it.
+//      Pass an immutable array now that we're done with making changes to it.
         [self.delegate didFetchForecast:[NSArray arrayWithArray:forecastDays]];
     }
-    
 }
 
-
-// This will take a URL and convert it to HTTPS if needed.
-// Weather Underground keeps returning insecure URLs, and I don't want to turn the
+//  This will take a URL and convert it to HTTPS if needed.
+//  Weather Underground keeps returning insecure URLs, and I don't want to turn the
 - (NSURL *)secureUrl:(NSURL *)originalUrl {
     NSURLComponents *components = [NSURLComponents componentsWithURL:originalUrl resolvingAgainstBaseURL:YES];
     components.scheme = @"https";

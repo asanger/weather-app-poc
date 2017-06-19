@@ -17,17 +17,10 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    WeatherService *weatherService = [[WeatherService alloc] init];
-    weatherService.delegate = self;
+    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayNewConditionData:) name:@"WeatherConditionUpdated" object:nil];
     
+    [self populateViewData];
     [self prepareDisplay];
-    
-    [weatherService fetchLocation];
-    
-    NSString *dateText = [NSDateFormatter localizedStringFromDate:[NSDate date]
-                                                    dateStyle:NSDateFormatterLongStyle
-                                                        timeStyle: NSDateFormatterNoStyle];
-    self.dateLabel.text = dateText;
 
 }
 
@@ -81,35 +74,24 @@
         self.locationLabel.frame = CGRectOffset( self.locationLabel.frame, 250, 0);
         self.dateLabel.frame = CGRectOffset( self.dateLabel.frame, 0, 250);
     }];
-    
-    
 }
 
 
-
-#pragma mark - Delegate Methods
-
-- (void)didFetchLocation:(Location *)location {
-    NSLog(@"didFetchLocation");
-    
-//    Update the root controller's currentLocation. Seems a bit smelly...
-    RootTabBarController *tabBarController = (RootTabBarController*)self.tabBarController;
-    tabBarController.currentLocation = location;
-    
-    self.locationLabel.text = [NSString stringWithFormat:@"%@, %@", location.city, location.state];
-    
-    WeatherService *weatherService = [[WeatherService alloc] init];
-    weatherService.delegate = self;
-    
-    [weatherService fetchCondition:location];
+- (void)displayNewConditionData:(NSNotification *)notification {
+    NSLog(@"displayNewConditionData");
+    [self populateViewData];
 }
 
-
-- (void)didFetchCondition:(WeatherCondition *)condition {
-    NSLog(@"didFetchCondition");
+- (void)populateViewData {
+    WeatherManager *sharedManager = [WeatherManager sharedManager];
     
-    self.temperatureLabel.text = condition.temperature;
-    self.descriptionLabel.text = condition.weatherDescription;
+    self.temperatureLabel.text = sharedManager.weatherCondition.temperature;
+    self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;
+    
+    NSString *dateText = [NSDateFormatter localizedStringFromDate:[NSDate date]
+                                                        dateStyle:NSDateFormatterLongStyle
+                                                        timeStyle: NSDateFormatterNoStyle];
+    self.dateLabel.text = dateText;
 }
 
 @end

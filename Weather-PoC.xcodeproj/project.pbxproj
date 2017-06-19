@@ -15,8 +15,8 @@
 		E86BA71F1EF5964400FC9353 /* ForecastViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA71E1EF5964400FC9353 /* ForecastViewController.m */; };
 		E86BA7231EF59ADD00FC9353 /* ForecastTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7221EF59ADD00FC9353 /* ForecastTableViewCell.m */; };
 		E86BA7261EF5A87700FC9353 /* ForecastDay.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7251EF5A87700FC9353 /* ForecastDay.m */; };
-		E86BA72A1EF62C5D00FC9353 /* current_conditions_bg.jpg in Resources */ = {isa = PBXBuildFile; fileRef = E86BA7291EF62C5D00FC9353 /* current_conditions_bg.jpg */; };
 		E86BA72E1EF6FDA200FC9353 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E86BA72D1EF6FDA200FC9353 /* Assets.xcassets */; };
+		E86BA7371EF8050900FC9353 /* WeatherManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7361EF8050900FC9353 /* WeatherManager.m */; };
 		E87F3D521EF1BA800016AE8B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D511EF1BA800016AE8B /* main.m */; };
 		E87F3D551EF1BA800016AE8B /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E87F3D541EF1BA800016AE8B /* AppDelegate.m */; };
 		E87F3D611EF1BA800016AE8B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = E87F3D5F1EF1BA800016AE8B /* Main.storyboard */; };
@@ -59,8 +59,9 @@
 		E86BA7221EF59ADD00FC9353 /* ForecastTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastTableViewCell.m; sourceTree = "<group>"; };
 		E86BA7241EF5A87700FC9353 /* ForecastDay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ForecastDay.h; sourceTree = "<group>"; };
 		E86BA7251EF5A87700FC9353 /* ForecastDay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ForecastDay.m; sourceTree = "<group>"; };
-		E86BA7291EF62C5D00FC9353 /* current_conditions_bg.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = current_conditions_bg.jpg; sourceTree = "<group>"; };
 		E86BA72D1EF6FDA200FC9353 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		E86BA7351EF8050900FC9353 /* WeatherManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherManager.h; sourceTree = "<group>"; };
+		E86BA7361EF8050900FC9353 /* WeatherManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeatherManager.m; sourceTree = "<group>"; };
 		E87F3D4D1EF1BA800016AE8B /* Weather-PoC.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Weather-PoC.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		E87F3D511EF1BA800016AE8B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E87F3D531EF1BA800016AE8B /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -110,6 +111,8 @@
 				E86BA70D1EF4647500FC9353 /* WeatherCondition.m */,
 				E86BA7241EF5A87700FC9353 /* ForecastDay.h */,
 				E86BA7251EF5A87700FC9353 /* ForecastDay.m */,
+				E86BA7351EF8050900FC9353 /* WeatherManager.h */,
+				E86BA7361EF8050900FC9353 /* WeatherManager.m */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -152,7 +155,6 @@
 				E87F3D531EF1BA800016AE8B /* AppDelegate.h */,
 				E87F3D541EF1BA800016AE8B /* AppDelegate.m */,
 				E87F3D5F1EF1BA800016AE8B /* Main.storyboard */,
-				E86BA7291EF62C5D00FC9353 /* current_conditions_bg.jpg */,
 				E87F3D641EF1BA800016AE8B /* LaunchScreen.storyboard */,
 				E87F3D671EF1BA800016AE8B /* Info.plist */,
 				E87F3D501EF1BA800016AE8B /* Supporting Files */,
@@ -303,7 +305,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E86BA72A1EF62C5D00FC9353 /* current_conditions_bg.jpg in Resources */,
 				E87F3D661EF1BA800016AE8B /* LaunchScreen.storyboard in Resources */,
 				E86BA72E1EF6FDA200FC9353 /* Assets.xcassets in Resources */,
 				E87F3D611EF1BA800016AE8B /* Main.storyboard in Resources */,
@@ -339,6 +340,7 @@
 				E86BA7261EF5A87700FC9353 /* ForecastDay.m in Sources */,
 				E86BA7151EF49C0800FC9353 /* RootTabBarController.m in Sources */,
 				E86BA7231EF59ADD00FC9353 /* ForecastTableViewCell.m in Sources */,
+				E86BA7371EF8050900FC9353 /* WeatherManager.m in Sources */,
 				E86BA70B1EF4585000FC9353 /* Location.m in Sources */,
 				E87F3D521EF1BA800016AE8B /* main.m in Sources */,
 			);

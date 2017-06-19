@@ -12,15 +12,11 @@
 #import "RootTabBarController.h"
 
 
-@interface CurrentConditionsViewController : UIViewController <WeatherServiceDelegate>
+@interface CurrentConditionsViewController : UIViewController
 
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *locationLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *backgroundImage;
-
-
-- (void)didFetchLocation:(Location *)location;
 
 @end

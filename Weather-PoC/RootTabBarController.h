@@ -8,11 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "Location.h"
+#import "WeatherService.h"
+#import "CurrentConditionsViewController.h"
+#import "WeatherManager.h"
 
-@interface RootTabBarController : UITabBarController
-
-@property (strong, nonatomic) Location *currentLocation;
-@property (strong, nonatomic) NSArray *forecastDays;
-@property (strong, nonatomic) WeatherCondition *weatherCondition;
+@interface RootTabBarController : UITabBarController <WeatherServiceDelegate>
 
 @end
