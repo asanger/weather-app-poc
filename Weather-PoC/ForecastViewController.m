@@ -81,6 +81,7 @@
 - (void)prepareDisplay {
     //  Make sure that the table view is transparent so we can just set the bg of the primary view.
     self.forecastTableView.backgroundColor = [UIColor clearColor];
+    self.forecastTableView.tableHeaderView = nil;
     
 //  Create a left->right gradient. No need to apply these to the individual cells since those aren't animated.
 //  If we do animate them in the future, we may want to move this to the individual cells so that the gradient moves with them.
