@@ -11,6 +11,23 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
+        <!--Current Conditions-->
+        <scene sceneID="74J-kj-ako">
+            <objects>
+                <navigationController id="dtG-Wr-xPn" sceneMemberID="viewController">
+                    <tabBarItem key="tabBarItem" title="Current Conditions" id="ygF-qi-DkW"/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ubj-Me-uJT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <connections>
+                        <segue destination="Yvu-Wc-DjN" kind="relationship" relationship="rootViewController" id="Aeq-bq-Xxe"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1sn-5G-4s3" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-178" y="-1045"/>
+        </scene>
         <!--Forecast-->
         <scene sceneID="x7b-B0-HGD">
             <objects>
@@ -241,7 +258,7 @@
                                                 <size key="shadowOffset" width="1" height="1"/>
                                             </label>
                                         </subviews>
-                                        <color key="backgroundColor" red="1" green="0.065541290779999997" blue="0.090878929489999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstItem="WBa-cv-JIy" firstAttribute="leading" secondItem="sIS-Lw-0m9" secondAttribute="leading" id="2FF-dj-Ksy"/>
                                             <constraint firstItem="ArK-vI-DTu" firstAttribute="leading" secondItem="WBa-cv-JIy" secondAttribute="leading" id="3Vy-gm-LLG"/>
@@ -277,6 +294,8 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Current Conditions" id="fgb-zQ-jd3"/>
+                    <navigationItem key="navigationItem" id="Xc2-bt-xi3"/>
+                    <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="DateLabel" destination="ArK-vI-DTu" id="2w7-m8-KEV"/>
                         <outlet property="LocationLabel" destination="pqH-jk-BO3" id="dDY-gX-cxv"/>
@@ -292,7 +311,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwy-0J-PHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-176.80000000000001" y="-1043.0284857571214"/>
+            <point key="canvasLocation" x="646" y="-1044"/>
         </scene>
         <!--Root Tab Bar Controller-->
         <scene sceneID="SuZ-Oq-fnc">
@@ -304,8 +323,8 @@
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     </tabBar>
                     <connections>
-                        <segue destination="Yvu-Wc-DjN" kind="relationship" relationship="viewControllers" id="oca-8i-jc4"/>
-                        <segue destination="kGu-dz-tyJ" kind="relationship" relationship="viewControllers" id="8xZ-Yo-oCx"/>
+                        <segue destination="dtG-Wr-xPn" kind="relationship" relationship="viewControllers" id="DG9-yq-nuE"/>
+                        <segue destination="kGu-dz-tyJ" kind="relationship" relationship="viewControllers" id="wjy-XI-Vjy"/>
                     </connections>
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="VM2-eu-rIM" userLabel="First Responder" sceneMemberID="firstResponder"/>

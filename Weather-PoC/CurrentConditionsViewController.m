@@ -106,13 +106,14 @@
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.containerView.backgroundColor = [UIColor clearColor];
+    
+    [self.navigationController setNavigationBarHidden:YES];
 }
 
 
 - (void)displayNewConditionData:(NSNotification *)notification {
     NSLog(@"displayNewConditionData");
     [self populateViewData];
-    
 }
 
 - (void)populateViewData {
