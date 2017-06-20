@@ -41,12 +41,19 @@
 
 - (void)preparePullToRefresh {
     refreshControl = [[UIRefreshControl alloc] init];
+    refreshControl.tintColor = [UIColor whiteColor];
     [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
     [self.scrollView addSubview:refreshControl];
 }
 
 - (void)pullToRefresh {
-    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
+    NSMutableAttributedString *refreshTitle =[[NSMutableAttributedString alloc] initWithString: @"Refreshing..."];
+    [refreshTitle setAttributes: @{
+                                   NSFontAttributeName:[UIFont fontWithName: @"Avenir Book" size: 17.0],
+                                   NSForegroundColorAttributeName:[UIColor whiteColor]
+                                   } range: NSMakeRange(0, [refreshTitle length])];
+
+    refreshControl.attributedTitle = refreshTitle;
     
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
