@@ -21,6 +21,7 @@
     
     [self populateViewData];
     [self prepareDisplay];
+    [self preparePullToRefresh];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -38,7 +39,23 @@
 }
 */
 
+- (void)preparePullToRefresh {
+    refreshControl = [[UIRefreshControl alloc] init];
+    [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
+    [self.scrollView addSubview:refreshControl];
+}
 
+- (void)pullToRefresh {
+    refreshControl.attributedTitle = [[NSAttributedString alloc] initWithString:@"Refreshing..."];
+    
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+        
+        dispatch_async(dispatch_get_main_queue(), ^{
+            WeatherManager *sharedManager = [WeatherManager sharedManager];
+            [sharedManager refreshData];
+        });
+    });
+}
 
 #pragma mark - Animation/Display Methods
 
@@ -89,13 +106,13 @@
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.containerView.backgroundColor = [UIColor clearColor];
-
 }
 
 
 - (void)displayNewConditionData:(NSNotification *)notification {
     NSLog(@"displayNewConditionData");
     [self populateViewData];
+    
 }
 
 - (void)populateViewData {
@@ -117,6 +134,11 @@
                                                             dateStyle:NSDateFormatterLongStyle
                                                             timeStyle: NSDateFormatterNoStyle];
         self.dateLabel.text = dateText;
+        
+        //    If the RefreshControl is still refreshing, end it.
+        if(refreshControl.refreshing) {
+            [refreshControl endRefreshing];
+        }
     });
 }
 
