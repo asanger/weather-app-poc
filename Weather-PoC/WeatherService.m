@@ -10,16 +10,29 @@
 
 @implementation WeatherService
 
+
+- (id)init {
+//    Load the API key from the bundle so it can be automatically changed based on the build type.
+    api_key = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"WEATHER_UNDERGROUND_API_KEY"];
+
+    return self;
+}
+
 - (void)fetchLocation
 {
     Location *location = [[Location alloc] init];
 
-    NSURL *locationUrl = [NSURL URLWithString:@"https://api.wunderground.com/api/2d60985a11fb9a6f/geolookup/q/autoip.json"];
+    NSURL *locationUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.wunderground.com/api/%@/geolookup/q/autoip.json",api_key]];
     NSURLRequest *request = [NSURLRequest requestWithURL:locationUrl];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                      if(error) {
+                                          NSLog(@"Something has gone terribly wrong! This should really display something to the user...");
+                                          return;
+                                      }
 
                                       NSDictionary *dataDictionary = [NSJSONSerialization
                                                                       JSONObjectWithData:data options:0 error:&error];
@@ -40,13 +53,18 @@
     WeatherCondition *condition = [[WeatherCondition alloc] init];
     
     
-    NSURL *conditionUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.wunderground.com/api/2d60985a11fb9a6f/conditions/q/%@/%@.json",location.state, location.city]];
+    NSURL *conditionUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.wunderground.com/api/%@/conditions/q/%@/%@.json", api_key, location.state, location.city]];
     NSURLRequest *request = [NSURLRequest requestWithURL:conditionUrl];
     NSURLSession *session = [NSURLSession sharedSession];
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request
                                             completionHandler:
                                   ^(NSData *data, NSURLResponse *response, NSError *error) {
                                       
+                                      if(error) {
+                                          NSLog(@"Something has gone terribly wrong! This should really display something to the user...");
+                                          return;
+                                      }
+
                                       NSDictionary *dataDictionary = [NSJSONSerialization
                                                                           JSONObjectWithData:data options:0 error:&error];
                                       
@@ -67,36 +85,47 @@
 {
     NSMutableArray *forecastDays = [NSMutableArray array];
     
-    NSURL *forecastUrl = [NSURL URLWithString:@"https://api.wunderground.com/api/2d60985a11fb9a6f/forecast10day/q/CA/San_Francisco.json"];
-    NSData *jsonData = [NSData dataWithContentsOfURL:forecastUrl];
-    NSError *error = nil;
-    NSDictionary *dataDictionary = [NSJSONSerialization
-                                    JSONObjectWithData:jsonData options:0 error:&error];
-    
-    NSDictionary *forecastDictionary = [dataDictionary objectForKey:@"forecast"];
-    NSDictionary *forecastDayDictionary = [forecastDictionary objectForKey:@"simpleforecast"];
-    
-    for (NSDictionary *simpleForecastDictionary in [forecastDayDictionary objectForKey:@"forecastday"]) {
-        ForecastDay *currentDay = [[ForecastDay alloc] init];
-        
-//      Assign all of the values from the API response
-//      double epoch = [[simpleForecastDictionary valueForKeyPath:@"date.epoch"] doubleValue];
-//      currentDay.date = [NSDate dateWithTimeIntervalSince1970:epoch];
-        currentDay.highTemp = [[simpleForecastDictionary valueForKeyPath:@"high.fahrenheit"] intValue];
-        currentDay.lowTemp = [[simpleForecastDictionary valueForKeyPath:@"low.fahrenheit"] intValue];
-        currentDay.weatherDescription = [simpleForecastDictionary valueForKey:@"conditions"];
-        currentDay.weatherIconDescription = [simpleForecastDictionary valueForKey:@"icon"];
-        currentDay.weekday = [simpleForecastDictionary valueForKeyPath:@"date.weekday_short"];
-        
-        NSLog(@"%@", currentDay.weatherIconDescription);
-        [forecastDays addObject:currentDay];
-    }
-    
-    
-    if ([self.delegate respondsToSelector:@selector(didFetchForecast:)]) {
-//      Pass an immutable array now that we're done with making changes to it.
-        [self.delegate didFetchForecast:[NSArray arrayWithArray:forecastDays]];
-    }
+    NSURL *forecastUrl = [NSURL URLWithString:[NSString stringWithFormat:@"https://api.wunderground.com/api/%@/forecast10day/q/%@/%@.json", api_key, location.state, location.city]];
+    NSURLRequest *request = [NSURLRequest requestWithURL:forecastUrl];
+    NSURLSession *session = [NSURLSession sharedSession];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request
+                                            completionHandler:
+                                  ^(NSData *data, NSURLResponse *response, NSError *error) {
+
+                                  if(error) {
+                                      NSLog(@"Something has gone terribly wrong! This should really display something to the user...");
+                                      return;
+                                  }
+
+                                    NSDictionary *dataDictionary = [NSJSONSerialization
+                                                                  JSONObjectWithData:data options:0 error:&error];
+                                      
+                                    NSDictionary *forecastDictionary = [dataDictionary objectForKey:@"forecast"];
+                                    NSDictionary *forecastDayDictionary = [forecastDictionary objectForKey:@"simpleforecast"];
+                                    
+                                    for (NSDictionary *simpleForecastDictionary in [forecastDayDictionary objectForKey:@"forecastday"]) {
+                                        ForecastDay *currentDay = [[ForecastDay alloc] init];
+                                        
+                                //      Assign all of the values from the API response
+                                        currentDay.highTemp = [[simpleForecastDictionary valueForKeyPath:@"high.fahrenheit"] intValue];
+                                        currentDay.lowTemp = [[simpleForecastDictionary valueForKeyPath:@"low.fahrenheit"] intValue];
+                                        currentDay.weatherDescription = [simpleForecastDictionary valueForKey:@"conditions"];
+                                        currentDay.weatherIconDescription = [simpleForecastDictionary valueForKey:@"icon"];
+                                        currentDay.weekday = [simpleForecastDictionary valueForKeyPath:@"date.weekday_short"];
+                                        
+                                        NSLog(@"%@", currentDay.weatherIconDescription);
+                                        [forecastDays addObject:currentDay];
+                                    }
+                                    
+                                    
+                                    if ([self.delegate respondsToSelector:@selector(didFetchForecast:)]) {
+                                //      Pass an immutable array now that we're done with making changes to it.
+                                        [self.delegate didFetchForecast:[NSArray arrayWithArray:forecastDays]];
+                                    }
+                                    
+                                  }];
+    [task resume];
+
 }
 
 //  This will take a URL and convert it to HTTPS if needed.

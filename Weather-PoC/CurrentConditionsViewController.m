@@ -15,6 +15,7 @@
 @implementation CurrentConditionsViewController
 
 - (void)viewDidLoad {
+    NSLog(@"CurrentConditionsViewController: viewDidLoad");
     [super viewDidLoad];
     
     [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(displayNewConditionData:) name:@"WeatherConditionUpdated" object:nil];
@@ -22,6 +23,7 @@
     [self populateViewData];
     [self prepareDisplay];
     [self preparePullToRefresh];
+
 }
 
 - (void)didReceiveMemoryWarning {
@@ -40,6 +42,8 @@
 */
 
 - (void)preparePullToRefresh {
+    NSLog(@"CurrentConditionsViewController: preparePullToRefresh");
+
     refreshControl = [[UIRefreshControl alloc] init];
     refreshControl.tintColor = [UIColor whiteColor];
     [refreshControl addTarget:self action:@selector(pullToRefresh) forControlEvents:UIControlEventValueChanged];
@@ -58,20 +62,19 @@
     dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
         
         dispatch_async(dispatch_get_main_queue(), ^{
-            WeatherManager *sharedManager = [WeatherManager sharedManager];
-            [sharedManager refreshData];
+            WeatherManager *sharedWeatherManager = [WeatherManager sharedWeatherManager];
+            [sharedWeatherManager refreshData];
         });
     });
 }
-
-#pragma mark - Buttons
-
 
 
 #pragma mark - Animation/Display Methods
 
 - (void)viewWillAppear:(BOOL)animated {
-    
+    [super viewWillAppear:animated];
+    NSLog(@"CurrentConditionsViewController: viewWillAppear");
+
     self.temperatureLabel.alpha = 0.0;
     self.descriptionLabel.alpha = 0.0;
     self.locationLabel.alpha = 0.0;
@@ -93,16 +96,33 @@
         self.locationLabel.frame = CGRectOffset( self.locationLabel.frame, 250, 0);
         self.dateLabel.frame = CGRectOffset( self.dateLabel.frame, 0, 250);
     }];
+    
+    [self.navigationController setNavigationBarHidden:YES];
+    
+    [self startRadarAnimation];
+
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self startAnimation];
+    [super viewDidAppear:animated];
+    NSLog(@"CurrentConditionsViewController: viewDidAppear");
+
+}
+
+- (void)viewDidDisappear:(BOOL)animated {
+    [super viewDidDisappear:animated];
+    
+//    Kill the radar animation while we're not on the current VC.
+    [self.radarButton.imageView.layer removeAllAnimations];
 }
 
 
 //  Arranges the scrollview properly on the parent view.
 //  TODO: Clean up the mixed layout (code vs storyboard).
 - (void)viewDidLayoutSubviews {
+    [super viewDidLayoutSubviews];
+    NSLog(@"CurrentConditionsViewController: viewDidLayoutSubviews");
+
     UIEdgeInsets scrollViewInsets = UIEdgeInsetsZero;
     scrollViewInsets.top = self.scrollView.bounds.size.height/2.0;
     scrollViewInsets.top -= self.containerView.bounds.size.height/2.0;
@@ -111,11 +131,12 @@
     scrollViewInsets.bottom += 1;
     
     self.scrollView.contentInset = scrollViewInsets;
-    
 }
 
 
 - (void)prepareDisplay {
+    NSLog(@"CurrentConditionsViewController: prepareDisplay");
+
     //  Add a gradient to the background so it looks a bit nicer.
     UIColor *topColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
     UIColor *bottomColor = [UIColor colorWithRed:197.0/255.0 green:231.0/255.0 blue:255.0/255.0 alpha:1.0];
@@ -126,45 +147,50 @@
     
     self.scrollView.backgroundColor = [UIColor clearColor];
     self.containerView.backgroundColor = [UIColor clearColor];
-    
-    [self.navigationController setNavigationBarHidden:YES];
+
+//    Create the radar arm, add it to the radar button
+    radarArmImageView = [[UIImageView alloc] init];
+    [radarArmImageView setImage:[UIImage imageNamed:@"RadarArm"]];
+    [self.radarButton addSubview:radarArmImageView];
 }
 
 
-- (void)startAnimation {
-//    UIImageView *radarHandImageView = [[UIImageView alloc] initWithFrame:self.radarButton.imageView.frame];
-    UIImageView *radarHandImageView = [[UIImageView alloc] init];
-    [radarHandImageView setImage:[UIImage imageNamed:@"RadarArm"]];
-    [self.radarButton addSubview:radarHandImageView];
-    [radarHandImageView setFrame:self.radarButton.imageView.frame];
-
+- (void)startRadarAnimation {
+    NSLog(@"CurrentConditionsViewController: startRadarAnimation");
     
-    CABasicAnimation *radarHandAnimation;
-    radarHandAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
-    radarHandAnimation.fromValue = [NSNumber numberWithFloat:M_PI];
-    radarHandAnimation.byValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
-    radarHandAnimation.duration = 10.0f;
-    radarHandAnimation.repeatCount = HUGE_VALF;
-    
-    [radarHandImageView.layer addAnimation:radarHandAnimation forKey:@"radarHandAnimation"];
-//    [self.radarButton.imageView.layer addSublayer:radarHandImageView.layer];
-//    [self.radarButton setImage:[UIImage imageNamed:@"RadarArm"] forState:UIControlStateNormal];
-    [self.radarButton bringSubviewToFront:radarHandImageView];
+//    If this isn't set in the main queue, position will likely be off.
+    dispatch_async(dispatch_get_main_queue(), ^{
+        
+        CABasicAnimation *radarArmAnimation;
+        radarArmAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+        radarArmAnimation.fromValue = [NSNumber numberWithFloat:M_PI];
+        radarArmAnimation.byValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
+        radarArmAnimation.duration = 10.0f;
+        radarArmAnimation.repeatCount = HUGE_VALF;
+        
+        [radarArmImageView setFrame:self.radarButton.imageView.frame];
+        [radarArmImageView.layer addAnimation:radarArmAnimation forKey:@"radarArmAnimation"];
+        [self.radarButton bringSubviewToFront:radarArmImageView];
+    });
 }
 
 
 
 - (void)displayNewConditionData:(NSNotification *)notification {
+    NSLog(@"CurrentConditionsViewController: displayNewConditionData");
+
     NSLog(@"displayNewConditionData");
     [self populateViewData];
 }
 
 - (void)populateViewData {
+    NSLog(@"CurrentConditionsViewController: populateViewData");
+
 //    We need to make sure that this *always* runs on the main thread, otherwise we might get crashes or super very delayed updates.
     dispatch_async(dispatch_get_main_queue(), ^{
         NSLog(@"PopulateViewData");
         //    If the information has not yet been returned from the API, don't attempt to display the data yet.
-        WeatherManager *sharedManager = [WeatherManager sharedManager];
+        WeatherManager *sharedManager = [WeatherManager sharedWeatherManager];
         if(sharedManager.conditionUpdatedAt) {
             self.temperatureLabel.text = [NSString stringWithFormat:@"%d", sharedManager.weatherCondition.temperature];
             self.descriptionLabel.text = sharedManager.weatherCondition.weatherDescription;

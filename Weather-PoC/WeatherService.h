@@ -16,7 +16,9 @@
 - (void)didFetchForecast:(NSArray *)forecastDays;
 @end
 
-@interface WeatherService : NSObject
+@interface WeatherService : NSObject {
+    NSString *api_key;
+}
 
 @property (weak, nonatomic) id <WeatherServiceDelegate> delegate;
 

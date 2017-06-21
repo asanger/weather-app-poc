@@ -15,6 +15,7 @@
 @interface CurrentConditionsViewController : UIViewController {
     // TODO: Would prefer to not store this in an instance variable. How can we get it to stop refreshing after `displayNewConditionData` is called?
     UIRefreshControl *refreshControl;
+    UIImageView *radarArmImageView;
 }
 
 @property (weak, nonatomic) IBOutlet UILabel *temperatureLabel;

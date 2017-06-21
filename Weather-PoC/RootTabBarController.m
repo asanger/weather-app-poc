@@ -19,8 +19,8 @@
     
 //  Initial load of the most recent weather data.
 //  If this data gets loaded after any of the View Controllers, a notification will be sent out to tell them to update their display with the latest data.
-    WeatherManager *sharedManager = [WeatherManager sharedManager];
-    [sharedManager refreshData];
+    WeatherManager *sharedWeatherManager = [WeatherManager sharedWeatherManager];
+    [sharedWeatherManager refreshData];
     
 }
 

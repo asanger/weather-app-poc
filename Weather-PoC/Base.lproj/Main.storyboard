@@ -14,7 +14,7 @@
         <!--Current Conditions-->
         <scene sceneID="74J-kj-ako">
             <objects>
-                <navigationController id="dtG-Wr-xPn" sceneMemberID="viewController">
+                <navigationController autoresizesArchivedViewToFullSize="NO" automaticallyAdjustsScrollViewInsets="NO" id="dtG-Wr-xPn" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Current Conditions" id="ygF-qi-DkW"/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="Ubj-Me-uJT">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
@@ -152,7 +152,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="ZHM-fG-DFc">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="cell" id="ZHM-fG-DFc">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ZHM-fG-DFc" id="neA-b4-gnV">
@@ -278,6 +278,9 @@
                                                         </fragment>
                                                     </attributedString>
                                                 </state>
+                                                <connections>
+                                                    <segue destination="9ex-AR-6LM" kind="show" id="TRq-XJ-gmy"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                         <color key="backgroundColor" red="0.99194461107254028" green="0.99615627527236938" blue="0.99600595235824585" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -319,7 +322,9 @@
                         </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Current Conditions" id="fgb-zQ-jd3"/>
-                    <navigationItem key="navigationItem" id="Xc2-bt-xi3"/>
+                    <navigationItem key="navigationItem" id="Xc2-bt-xi3">
+                        <barButtonItem key="backBarButtonItem" title="Back" id="4hq-lc-rda"/>
+                    </navigationItem>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
                         <outlet property="DateLabel" destination="ArK-vI-DTu" id="2w7-m8-KEV"/>
@@ -338,6 +343,25 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="zwy-0J-PHW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="645.60000000000002" y="-1045.7271364317842"/>
+        </scene>
+        <!--Radar-->
+        <scene sceneID="0g9-3m-6kN">
+            <objects>
+                <viewController title="Radar" id="9ex-AR-6LM" customClass="RadarViewController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Tzo-m3-uog"/>
+                        <viewControllerLayoutGuide type="bottom" id="LHQ-tS-Lj5"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="e3V-9Y-xLT">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vjV-Ml-eBG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1473" y="-1046"/>
         </scene>
         <!--Root Tab Bar Controller-->
         <scene sceneID="SuZ-Oq-fnc">

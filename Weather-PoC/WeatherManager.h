@@ -23,7 +23,7 @@
 @property (strong, nonatomic) NSDate *forecastUpdatedAt;
 
 
-+ (id)sharedManager;
++ (id)sharedWeatherManager;
 
 - (void)refreshData;
 

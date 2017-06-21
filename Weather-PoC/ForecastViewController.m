@@ -22,8 +22,8 @@
 
     
 //    Pull the forecast data from the WeatherManager on initial load.
-    WeatherManager *sharedManager = [WeatherManager sharedManager];
-    self.forecastDays = sharedManager.forecastDays;
+    WeatherManager *sharedWeatherManager = [WeatherManager sharedWeatherManager];
+    self.forecastDays = sharedWeatherManager.forecastDays;
     [self.forecastTableView reloadData];
 
     [self prepareDisplay];
@@ -64,7 +64,6 @@
     
     ForecastDay *forecastDay = [self.forecastDays objectAtIndex:indexPath.item];
     
-
     cell.highTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.highTemp];
     cell.lowTempLabel.text = [NSString stringWithFormat:@"%d", forecastDay.lowTemp];
     cell.dateLabel.text = forecastDay.weekday;
@@ -86,7 +85,7 @@
 //  Create a left->right gradient. No need to apply these to the individual cells since those aren't animated.
 //  If we do animate them in the future, we may want to move this to the individual cells so that the gradient moves with them.
     UIColor *leftColor = [UIColor colorWithRed:126.0/255.0 green:196.0/255.0 blue:255.0/255.0 alpha:1.0];
-    UIColor *rightColor = [UIColor colorWithRed:197.0/255.0 green:231.0/255.0 blue:255.0/255.0 alpha:1.0];
+    UIColor *rightColor = [UIColor colorWithRed:126.0/255.0 green:126.0/255.0 blue:255.0/255.0 alpha:1.0];
     CAGradientLayer *bgGradient = [CAGradientLayer layer];
     bgGradient.colors = [NSArray arrayWithObjects: (id)leftColor.CGColor, (id)rightColor.CGColor, nil];
     bgGradient.frame = self.view.bounds;
@@ -99,8 +98,8 @@
 - (void)displayNewForecastData:(NSNotification *)notification {
     NSLog(@"displayNewForecastData");
     
-    WeatherManager *sharedManager = [WeatherManager sharedManager];
-    self.forecastDays = sharedManager.forecastDays;
+    WeatherManager *sharedWeatherManager = [WeatherManager sharedWeatherManager];
+    self.forecastDays = sharedWeatherManager.forecastDays;
     
     //    We need to make sure that this *always* runs on the main thread, otherwise we might get crashes or super very delayed updates.
     dispatch_async(dispatch_get_main_queue(), ^{

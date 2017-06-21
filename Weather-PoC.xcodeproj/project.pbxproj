@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E817AC761EF9FF2E00B71017 /* RadarViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E817AC751EF9FF2E00B71017 /* RadarViewController.m */; };
 		E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */; };
 		E86BA70B1EF4585000FC9353 /* Location.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA70A1EF4585000FC9353 /* Location.m */; };
 		E86BA70E1EF4647500FC9353 /* WeatherCondition.m in Sources */ = {isa = PBXBuildFile; fileRef = E86BA70D1EF4647500FC9353 /* WeatherCondition.m */; };
@@ -43,6 +44,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		E817AC741EF9FF2E00B71017 /* RadarViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RadarViewController.h; sourceTree = "<group>"; };
+		E817AC751EF9FF2E00B71017 /* RadarViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RadarViewController.m; sourceTree = "<group>"; };
 		E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CurrentConditionsViewController.h; sourceTree = "<group>"; };
 		E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CurrentConditionsViewController.m; sourceTree = "<group>"; };
 		E86BA7091EF4585000FC9353 /* Location.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Location.h; sourceTree = "<group>"; };
@@ -102,6 +105,30 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		E817AC771EFA214000B71017 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */,
+				E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */,
+				E86BA7131EF49C0800FC9353 /* RootTabBarController.h */,
+				E86BA7141EF49C0800FC9353 /* RootTabBarController.m */,
+				E86BA71D1EF5964400FC9353 /* ForecastViewController.h */,
+				E86BA71E1EF5964400FC9353 /* ForecastViewController.m */,
+				E817AC741EF9FF2E00B71017 /* RadarViewController.h */,
+				E817AC751EF9FF2E00B71017 /* RadarViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
+		E817AC781EFA215A00B71017 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E86BA7171EF4A7CB00FC9353 /* WeatherService.h */,
+				E86BA7181EF4A7CB00FC9353 /* WeatherService.m */,
+			);
+			name = Services;
+			sourceTree = "<group>";
+		};
 		E86BA7081EF4582400FC9353 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -149,6 +176,8 @@
 		E87F3D4F1EF1BA800016AE8B /* Weather-PoC */ = {
 			isa = PBXGroup;
 			children = (
+				E817AC781EFA215A00B71017 /* Services */,
+				E817AC771EFA214000B71017 /* Controllers */,
 				E86BA72D1EF6FDA200FC9353 /* Assets.xcassets */,
 				E86BA7201EF59AA500FC9353 /* Views */,
 				E86BA7081EF4582400FC9353 /* Models */,
@@ -158,14 +187,6 @@
 				E87F3D641EF1BA800016AE8B /* LaunchScreen.storyboard */,
 				E87F3D671EF1BA800016AE8B /* Info.plist */,
 				E87F3D501EF1BA800016AE8B /* Supporting Files */,
-				E86BA7051EF4536600FC9353 /* CurrentConditionsViewController.h */,
-				E86BA7061EF4536600FC9353 /* CurrentConditionsViewController.m */,
-				E86BA7131EF49C0800FC9353 /* RootTabBarController.h */,
-				E86BA7141EF49C0800FC9353 /* RootTabBarController.m */,
-				E86BA7171EF4A7CB00FC9353 /* WeatherService.h */,
-				E86BA7181EF4A7CB00FC9353 /* WeatherService.m */,
-				E86BA71D1EF5964400FC9353 /* ForecastViewController.h */,
-				E86BA71E1EF5964400FC9353 /* ForecastViewController.m */,
 			);
 			path = "Weather-PoC";
 			sourceTree = "<group>";
@@ -337,6 +358,7 @@
 				E86BA7071EF4536600FC9353 /* CurrentConditionsViewController.m in Sources */,
 				E86BA70E1EF4647500FC9353 /* WeatherCondition.m in Sources */,
 				E86BA7191EF4A7CB00FC9353 /* WeatherService.m in Sources */,
+				E817AC761EF9FF2E00B71017 /* RadarViewController.m in Sources */,
 				E86BA7261EF5A87700FC9353 /* ForecastDay.m in Sources */,
 				E86BA7151EF49C0800FC9353 /* RootTabBarController.m in Sources */,
 				E86BA7231EF59ADD00FC9353 /* ForecastTableViewCell.m in Sources */,
@@ -443,6 +465,7 @@
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
+				WEATHER_UNDERGROUND_API_KEY = 2d60985a11fb9a6f;
 			};
 			name = Debug;
 		};
@@ -486,6 +509,8 @@
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
+				WEATHER_UNDERGROUND_API_KEY = XXXXXXXXXX;
+				"WEATHER_UNDERGROUND_API_KEY[arch=*]" = "";
 			};
 			name = Release;
 		};

@@ -12,6 +12,6 @@
 #import "CurrentConditionsViewController.h"
 #import "WeatherManager.h"
 
-@interface RootTabBarController : UITabBarController <WeatherServiceDelegate>
+@interface RootTabBarController : UITabBarController
 
 @end

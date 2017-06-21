@@ -10,7 +10,7 @@
 
 @implementation WeatherManager
 
-+ (id)sharedManager {
++ (id)sharedWeatherManager {
     static WeatherManager *sharedWeatherManager = nil;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{

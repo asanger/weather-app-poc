@@ -11,7 +11,7 @@
 #import "WeatherService.h"
 #import "RootTabBarController.h"
 
-@interface ForecastViewController : UIViewController <UITableViewDelegate, UITableViewDataSource, WeatherServiceDelegate>
+@interface ForecastViewController : UIViewController <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) NSArray *forecastDays;
 
