@@ -64,6 +64,10 @@
     });
 }
 
+#pragma mark - Buttons
+
+
+
 #pragma mark - Animation/Display Methods
 
 - (void)viewWillAppear:(BOOL)animated {
@@ -73,11 +77,12 @@
     self.locationLabel.alpha = 0.0;
     self.dateLabel.alpha = 0.0;
 
+//    Set an offset so that they are out of place when the view initially appears.
     self.descriptionLabel.frame = CGRectOffset( self.descriptionLabel.frame, 250, 0);
     self.locationLabel.frame = CGRectOffset( self.locationLabel.frame, -250, 0);
     self.dateLabel.frame = CGRectOffset( self.dateLabel.frame, 0, -250);
 
-    
+//    Animate the reverse of the above offset so that they animate into the correct position.
     [UILabel animateWithDuration:1.0 animations:^{
         self.temperatureLabel.alpha = 1.0;
         self.descriptionLabel.alpha = 1.0;
@@ -90,6 +95,13 @@
     }];
 }
 
+- (void)viewDidAppear:(BOOL)animated {
+    [self startAnimation];
+}
+
+
+//  Arranges the scrollview properly on the parent view.
+//  TODO: Clean up the mixed layout (code vs storyboard).
 - (void)viewDidLayoutSubviews {
     UIEdgeInsets scrollViewInsets = UIEdgeInsetsZero;
     scrollViewInsets.top = self.scrollView.bounds.size.height/2.0;
@@ -99,6 +111,7 @@
     scrollViewInsets.bottom += 1;
     
     self.scrollView.contentInset = scrollViewInsets;
+    
 }
 
 
@@ -116,6 +129,29 @@
     
     [self.navigationController setNavigationBarHidden:YES];
 }
+
+
+- (void)startAnimation {
+//    UIImageView *radarHandImageView = [[UIImageView alloc] initWithFrame:self.radarButton.imageView.frame];
+    UIImageView *radarHandImageView = [[UIImageView alloc] init];
+    [radarHandImageView setImage:[UIImage imageNamed:@"RadarArm"]];
+    [self.radarButton addSubview:radarHandImageView];
+    [radarHandImageView setFrame:self.radarButton.imageView.frame];
+
+    
+    CABasicAnimation *radarHandAnimation;
+    radarHandAnimation = [CABasicAnimation animationWithKeyPath:@"transform.rotation"];
+    radarHandAnimation.fromValue = [NSNumber numberWithFloat:M_PI];
+    radarHandAnimation.byValue = [NSNumber numberWithFloat:((360*M_PI)/180)];
+    radarHandAnimation.duration = 10.0f;
+    radarHandAnimation.repeatCount = HUGE_VALF;
+    
+    [radarHandImageView.layer addAnimation:radarHandAnimation forKey:@"radarHandAnimation"];
+//    [self.radarButton.imageView.layer addSublayer:radarHandImageView.layer];
+//    [self.radarButton setImage:[UIImage imageNamed:@"RadarArm"] forState:UIControlStateNormal];
+    [self.radarButton bringSubviewToFront:radarHandImageView];
+}
+
 
 
 - (void)displayNewConditionData:(NSNotification *)notification {
